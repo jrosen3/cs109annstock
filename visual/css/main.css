@@ -1,27 +1,32 @@
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Alegreya Sans', sans-serif!important;
+	font-weight:300;
 	}
 .modal-title, .navbar-header-text{
-	font-weight: 300;
+	font-weight: 400;
 	font-size: 22px;
 }
+.modal-title{color:#fff;}
+
 .modal-backdrop {
-	background-color:#F0F0F0!important;
-	opacity:.8!important;
+	background-color:#aaa!important;
+	opacity:.9!important;
 	}
 .modal-content{
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 0px;
 	box-shadow:none;
+	background-color:#444;
+	}
+.modal-content p{
+	color:#ddd;
+}
+	#mainvis {
+		width:1008px!important;
+		height:630px!important;
+		margin-top:50px;
 	}
 	
-	.mainvis {
-		width:1170px!important;
-	}
-	
-	#visualization{
-		margin-top:60px;
-	}
 	
 	.infopanel{
 		position: fixed;
@@ -30,8 +35,26 @@ h1, h2, h3, h4, h5, h6 {
 		right: 20px;
 		height: 400px;
 		width: 250px;
-		background-color: #FAFAFA;
+		background-color: #E4F8FA;
 		border: 1px solid #DDD;
-		padding: 10px;
+		padding: 14px;
 	}
 	
+	#run_ann {
+		width:100%}
+		.resultpanel{
+	width: 450px;
+	height: 200px;
+	border: 1px solid #EEE;
+	padding: 20px;
+	position: relative;
+	top: -400px;
+	left: 460px;
+	}
+
+	.storyrow{
+		width: 100%;
+		border-top: 1px solid #EEE;
+	}
+	
+	h2{font-weight:300;}
