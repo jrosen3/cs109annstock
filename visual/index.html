@@ -11,21 +11,89 @@
   
   <!-- Import D3.js -->
   <script src="js/d3.v3.min.js"></script>
+  <script src="js/d3.csv.js"></script>
+  
+  <!-- Import custom libraries -->
   <script src="js/pgfunc.js"></script>
+  <script src="js/iris.js"></script>
   
   <!-- Import fonts -->
 <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:100,300,400,500,700' rel='stylesheet' type='text/css'>
   
   <!-- Import custom styles -->
   <link rel="stylesheet" type="text/css" href="css/main.css">
+  <!--<link rel="stylesheet" type="text/css" href="css/iris.css">-->
   
-  
+      <style type="text/css">
+
+svg {
+  font-size: 14px;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis line {
+  stroke: #ddd;
+  stroke-width: .5px;
+}
+
+.axis path {
+  display: none;
+}
+
+rect.extent {
+  fill: #000;
+  fill-opacity: .125;
+  stroke: #fff;
+}
+
+rect.frame {
+  fill: #fff;
+  fill-opacity: .7;
+  stroke: #aaa;
+}
+
+circle {
+  fill: #ccc;
+  fill-opacity: .5;
+}
+
+.legend circle {
+  fill-opacity: 1;
+}
+
+.legend text {
+  font-size: 18px;
+  font-style: oblique;
+}
+
+.cell text {
+  pointer-events: none;
+}
+
+.positive {
+  fill: #33692B;
+}
+
+.neutral {
+  fill: #A8A8A8;
+}
+
+.negative {
+  fill: #0000BD;
+}
+
+    </style>
+    
 </head>
 
 <body>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <h1 class="navbar-header-text">A Neural Network Application: Predicting the Stock Market</h1>
+        <span><h5><a>Introduction</a></h5></span>
       </div>
 </div>
 <div class="container">
@@ -38,7 +106,10 @@
     </div>
     <section class="storyrow">
     <h2>The Beginning</h2>
+        <div id="charts">
+        </div>
     </section>
+    
     
             
     <section class="storyrow">

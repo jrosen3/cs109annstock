@@ -47,8 +47,8 @@ h1, h2, h3, h4, h5, h6 {
 	height: 200px;
 	border: 1px solid #EEE;
 	padding: 20px;
-	position: relative;
-	top: -400px;
+	position: absolute;
+	top: 300px;
 	left: 460px;
 	}
 
@@ -57,4 +57,12 @@ h1, h2, h3, h4, h5, h6 {
 		border-top: 1px solid #EEE;
 	}
 	
+	.btn-primary{
+		background-color: #4F7799;
+border-color: #2B5070;
+border-radius: 0px;
+	}
+	.btn-primary:hover{
+		background-color:#3A5770;
+	}
 	h2{font-weight:300;}
