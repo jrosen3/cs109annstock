@@ -59,7 +59,7 @@ background-color: #2F375F;
 }
 .rowaccent p {color: #ddd;}
 .rowaccent h2 {color:#fff;margin-bottom:15px;}
-.accentcontainer {margin:0px auto; width:600px;}
+.accentcontainer {margin:0px auto; width:800px;}
 	#mainvis {
 		width:1008px!important;
 		height:630px!important;
@@ -132,7 +132,7 @@ position: absolute;
 	overflow-x:hidden;
 	overflow-y:scroll;
 	}
-	#sets span {
+	#sets a {
 		display: inline-block;
 margin-left: 1px;
 margin-right: 1px;
@@ -149,6 +149,7 @@ width: 600px;
 margin: 0px auto;
 border: 1px solid #EEE;
 height: 350px;
+pointer-events:none;
 }
 	
 	.halfrow {

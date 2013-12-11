@@ -52,33 +52,48 @@
     </div>
     <div class="resultpanel">
     <center><div class="btn btn-primary" id="run_nn">Run Neural Network </div></center>
-    <center id = "resultnote" style="display:none;" ><p style="color:#aaa">* All edges are proportional to the actual weights trained after 300 epochs.  Blue edges represent positive weights, red represents negative weights.</p></center>
+    <center id = "resultnote" style="display:none;" ><p style="color:#aaa;margin:0px;">* Edge widths are proportional to the actual weights trained after 300 epochs.  </p><p style="color:#aaa;margin:0px;">Blue edges represent positive weights, red represents negative weights.</p></center>
     <h3>Results</h3>
-    <p>Based on a Artificial Neural Network (ANN) trained using backprogogation and data from 1999, the stock market is predicted to <b>rise</b> during the next week, with <b>57.5%</b> accuracy.  This prediction is 57% accurate, being more accurate for increases than for decreases.</p>
+    <p>Based on a Artificial Neural Network (ANN) trained using backprogogation and data from 1999 to 2012, the week-over-week stock market can be predicted to rise or fall with 60.6% accuracy. This prediction is more accurate for increases (68%) than for decreases (47%).</p>
      <h3>About</h3>
+     We constructed a multilayer  perceptron (MLP) feedforward neural network that used backprogagation to train the weights of the network for the purpose of predicting the direction of the stock market.  In the process, we exploring a wide variety of possibilities both for the data and neural net parameters.
     </div>
 </div>
 	<section class ="rowaccent">
     <div class="accentcontainer">
     <center><h2>Background & Motivation</h2></center>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.
+    <p>Predicting the stock market is certainly a new endeavor.  However, past approaches have had shortcomings which we wanted to address, at least in part: past models depended on human intutition for the selection of input data (i.e. what should we put in the network?), and were also nontrivial to implement both in terms of computation power required and the data to be gathered. In this project, we aimed to take a more rigorous approach to data selection which incorporates not only human intuition, but an algorithmic examination of data relevance.  By doing so, we were able to find a set of input data that provides reasonable accuracy with relatively little total volume of data. While our work may not be at the scale or scope of larger commercial applications,it does resemble an original application of ANNs for financial data and an advancement in network pruning, a major topic among financial forecasting with ANNs in the scientific literature.</p>
+    <p>In terms of project motivation, we wanted to work on a project that was both novel and challenging: the computational and data-related aspects of neural networks are difficult and we were able to gain expereince on a practical programmatic level.  In addition, we wanted to focus on a project that was relevant and applicable: one of the major questions unaswered by our project is if the neural net we created could serve as a basis for a trading strategy.
 </p>
     </div>
     </section>
     
     <div class="container">
-    
     <div class="hiddenscroll" id="data"></div>
     <section class="storyrow">
     <center><h2 class="hideme">The Data</h2></center>
     <h3>Collecting the Data</h3>
-    <p>To collect the data we use, we used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service with XYZ.
-    683 weekes
-    1999 - Sept 7  Oct 9 2012
-    <p class = "viscontent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.</p>
+    <p class="viscontent">Before we decided on the specific data we were going to use, we first decided to download important financial metrics and begin exploring to determine how we would approach finding relevant financial data for our neural network. To collect data used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service which allowed us to explore and download relevant financial data.</p>
+    <p class="viscontent">In the end, we downloaded 683 weeks of data which ranged from Septemebr 1999 to October 2012, a range decided in our processing steps. Before this information was actuallyy used, we had to perform a number of steps to process the data.</p>
+    <h3>Processing Data</h3>
+    <p>Qunadl allowed us to access financial data easily; however, our work was just beginning.  The Data retrieved from Quandl was in s  We decided to use weekly data that extended at least to years back and had to write code to perform the following data procedures:</p>
+    <div class="viscontent" style="margin: 0px auto;background-color: #EEE;padding: 20px;">
+        <div class="halfrow" style="border-right:1px solid #aaa;"><center><h4>Step 1: Cleaning & Combining</h4></center>
+             <ul>
+                <li>
+                </li>
+            </ul>
+            </div>
+        <div class="halfrow"><center><h4>Step 2: Interpoliating & Normalizing</h4></center>
+            <ul>
+                <li>
+                </li>
+            </ul>
+        </div>
+    </div>
     
-    <h3>Visualizing Data</h3>
-    
+    <h3 style="clear:both;">Visualizing Data</h3>
+    <p class="viscontent">With our data, we created a  series of visualization an <a href="process.html">processbook.</a> we downloaded 683 weeks of data which ranged from Septemebr 1999 to October 2012. Before this information was used in the neural network, we performed a series of visaulization steps to better understand the data we were working with.</p>
     <h3>Exploring the Data - Weekly Economic Data from 1999-2012</h3>    
     <div class="forms">
     <form class="irisform">
@@ -112,7 +127,7 @@
    	<h3>Determining the Network</h3>
     
     <h3>Narrowing Down the Data</h3>
-    <center class="setbuttons"><div class="btn btn-primary" id="run_sets1">Step 1: Get Datasets List</div><div class="btn btn-primary" id="run_sets2">Step 2: Narrow Down the Data</div></center>
+    <center class="setbuttons"><div class="btn btn-primary" id="run_sets1">Step 1: Get Datasets List</div><div class="btn btn-primary" id="run_sets2" style="margin-left:50px;">Step 2: Narrow Down the Data</div></center>
     </section>
     </div> <!-- end container -->
     
@@ -152,7 +167,7 @@
 </div>
 
 <div class = "infopanel">
-    <p>To collect our data, we scraped over <strong>4000+ datasets </strong> and evaluated them all on the conditions of availability and predictive power!</p>
+    <p>By the end of the project, we scraped over <strong>4000+ datasets </strong> and evaluated them all on the conditions of availability and predictive power. (More on this below!)</p>
 </p>
 </div>
 
