@@ -1,13 +1,15 @@
 // JavaScript Document
 
-
+function initIris(inputtraits){
 d3.csv("data.csv", function(flowers) {
+	$("#charts").empty(); // Empty it out to start new.
 	console.log(flowers);
   // Size parameters.
   var size = 140,
       padding = 10,
       n = 4,
-      traits = ["house sales", "gas prices", "gold prices", "usd to euro"];
+	  //traits = ["house sales", "house sales", "house sales", "house sales"];
+      traits = inputtraits;
 
   // Position scales.
   var x = {}, y = {};
@@ -35,8 +37,8 @@ d3.csv("data.csv", function(flowers) {
 
   // Root panel.
   var svg = d3.select("#charts").append("svg:svg")
-      .attr("width", 1280)
-      .attr("height", 800)
+      .attr("width", 1000)
+      .attr("height", 650)
     .append("svg:g")
       .attr("transform", "translate(150.5,20)");
 
@@ -45,7 +47,7 @@ d3.csv("data.csv", function(flowers) {
       .data(["positive", "neutral", "negative"])
     .enter().append("svg:g")
       .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(610," + (i * 20 + 354) + ")"; });
+      .attr("transform", function(d, i) { return "translate(630," + (i * 20 + 284) + ")"; });
 
   legend.append("svg:circle")
       .attr("class", String)
@@ -142,3 +144,4 @@ d3.csv("data.csv", function(flowers) {
     return c;
   }
 });
+}
