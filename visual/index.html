@@ -8,8 +8,11 @@
    <!-- Import Bootstrap -->
   <script src="js/bootstrap.js"></script>
   <script src="js/bootstrap-select.min.js"></script>
+  <script src="js/jquery.prettyPhoto.js"></script>  
+  
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
+  <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css">
   <!-- Import D3.js -->
   <script src="js/d3.v3.min.js"></script>
   <script src="js/d3.csv.js"></script>
@@ -47,7 +50,7 @@
     </div>
     <div class="resultpanel">
     <center><div class="btn btn-primary" id="run_nn">Run Neural Network </div></center>
-    <center id = "resultnote" style="display:none;" ><p style="color:#aaa">* All edges are proportional to the actual weights trained after 300 epochs.</p></center>
+    <center id = "resultnote" style="display:none;" ><p style="color:#aaa">* All edges are proportional to the actual weights trained after 300 epochs.  Blue edges represent positive weights, red represents negative weights.</p></center>
     <h3>Results</h3>
     <p>Based on a Artificial Neural Network (ANN) trained using backprogogation and data from 1999, the stock market is predicted to <b>rise</b> during the next week, with <b>57.5%</b> accuracy.  This prediction is 57% accurate, being more accurate for increases than for decreases.</p>
      <h3>About</h3>
@@ -67,7 +70,7 @@
     <section class="storyrow">
     <center><h2 class="hideme">The Data</h2></center>
     <h3>Collecting the Data</h3>
-    <p>To collect the data we use, we used the services of Quandl, a 
+    <p>To collect the data we use, we used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service with XYZ.
     683 weekes
     1999 - Sept 7  Oct 9 2012
     <p class = "viscontent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.</p>
@@ -104,11 +107,22 @@
     
             
     <section class="storyrow" id="model">
-    <h2>The Model</h2>
+    <center><h2>The Model</h2></center>
+   	<h3>Determining the Network</h3>
+    <p>To collect the data we use, we used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service with XYZ.
+    1999 - Sept 7  Oct 9 2012
+    <p class = "viscontent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.</p>
+    <h3>Determining the Network</h3>
+    <div class="halfrow" style="border-right:1px solid #ccc">
+    <center><h3>The Neural Network</h3></center>
+    </div>
+    <div class="halfrow">
+    <center><h3>The Bayesian Classifier</h3></center>
+    </div>
     </section>
     
     <section class="storyrow" id ="conclusions">
-    <h2>The Conclusions</h2>
+    <center><h2>The Conclusions</h2></center>
     </section>
     
 </div>
@@ -118,6 +132,10 @@
 </p>
 </div>
 
+<div class = "infopanel" style="margin-top:1100px">
+    <p>Fun fact fun fact <strong>emphasis </strong> and cool shit!</p>
+</p>
+</div>
 
 
 <!-- Introductory Modal -->
@@ -133,16 +151,18 @@
 </p>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary">Screencast</button>
+      <center>
+      <a href="http://www.youtube.com/watch?v=U0nvXHh7o-w" rel="prettyPhoto"><button type="button" class="btn btn-primary">Screencast</button></a>
       <button type="button" class="btn btn-primary">IPython Processbook</button>
        <button type="button" class="btn btn-default" data-dismiss="modal">Close & View Project</button>
-
+		</center>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script type="text/javascript">
 	$('#introModal').modal();
+	$("a[rel^='prettyPhoto']").prettyPhoto();
     console.log("premature load");
     </script>
     

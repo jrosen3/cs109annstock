@@ -122,5 +122,9 @@ position: absolute;
 		margin-bottom:60px;
 		width:900px;
 	}
+	.halfrow {
+	display:inline-block;
+	width:50%;
+	float:left;}
 	
 	
