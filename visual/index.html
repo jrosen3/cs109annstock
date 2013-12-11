@@ -7,8 +7,9 @@
    <script src="js/jquery-1.10.2.min.js"></script>
    <!-- Import Bootstrap -->
   <script src="js/bootstrap.js"></script>
+  <script src="js/bootstrap-select.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css">
   <!-- Import D3.js -->
   <script src="js/d3.v3.min.js"></script>
   <script src="js/d3.csv.js"></script>
@@ -19,118 +20,102 @@
   
   <!-- Import fonts -->
 <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:100,300,400,500,700' rel='stylesheet' type='text/css'>
-  
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
   <!-- Import custom styles -->
   <link rel="stylesheet" type="text/css" href="css/main.css">
-  <!--<link rel="stylesheet" type="text/css" href="css/iris.css">-->
-  
-      <style type="text/css">
-
-svg {
-  font-size: 14px;
-}
-
-.axis {
-  shape-rendering: crispEdges;
-}
-
-.axis line {
-  stroke: #ddd;
-  stroke-width: .5px;
-}
-
-.axis path {
-  display: none;
-}
-
-rect.extent {
-  fill: #000;
-  fill-opacity: .125;
-  stroke: #fff;
-}
-
-rect.frame {
-  fill: #fff;
-  fill-opacity: .7;
-  stroke: #aaa;
-}
-
-circle {
-  fill: #ccc;
-  fill-opacity: .5;
-}
-
-.legend circle {
-  fill-opacity: 1;
-}
-
-.legend text {
-  font-size: 18px;
-  font-style: oblique;
-}
-
-.cell text {
-  pointer-events: none;
-}
-
-.positive {
-  fill: #33692B;
-}
-
-.neutral {
-  fill: #A8A8A8;
-}
-
-.negative {
-  fill: #0000BD;
-}
-
-    </style>
+  <link rel="stylesheet" type="text/css" href="css/iris.css">
     
 </head>
 
-<body>
+<body data-spy="scroll" data-target="#ncont" data-offest="100">
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <h1 class="navbar-header-text">A Neural Network Application: Predicting the Stock Market</h1>
-        <span><h5><a>Introduction</a></h5></span>
+        <div id="ncont">
+        <ul class="nav">
+            <li class="active"><a href="#introduction">Introduction</a></li>
+            <li><a href="#data">Data</a></li>
+            <li><a href="#model">Model</a></li>
+            <li><a href="#conclusions">Conclusions</a></li>
+           </ul>
+        </div>
       </div>
 </div>
-<div class="container">
+<div class="container" id="introduction">
     <div id="mainvis">
     </div>
     <div class="resultpanel">
     <center><div class="btn btn-primary" id="run_nn">Run Neural Network </div></center>
+    <center id = "resultnote" style="display:none;" ><p style="color:#aaa">* All edges are proportional to the actual weights trained after 300 epochs.</p></center>
     <h3>Results</h3>
-    <p>The stock market is predicted to rise within the next week </p>
+    <p>Based on a Artificial Neural Network (ANN) trained using backprogogation and data from 1999, the stock market is predicted to <b>rise</b> during the next week, with <b>57.5%</b> accuracy.  This prediction is 57% accurate, being more accurate for increases than for decreases.</p>
+     <h3>About</h3>
     </div>
+</div>
+	<section class ="rowaccent">
+    <div class="accentcontainer">
+    <center><h2>Background & Motivation</h2></center>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.
+</p>
+    </div>
+    </section>
+    
+    <div class="container">
+    
+    <div class="hiddenscroll" id="data"></div>
     <section class="storyrow">
-    <h2>The Beginning</h2>
+    <center><h2 class="hideme">The Data</h2></center>
+    <h3>Collecting the Data</h3>
+    <p>To collect the data we use, we used the services of Quandl, a 
+    683 weekes
+    1999 - Sept 7  Oct 9 2012
+    <p class = "viscontent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.</p>
+    
+    <h3>Visualizing Data</h3>
+    
+    <h3>Exploring the Data - Weekly Economic Data from 1999-2012</h3>    
+    <div class="forms">
+    <form class="irisform">
+    <p>First dataset:</p>
+    <select id="trait1" onchange="selectData()" class="selectpicker"><optgroup label="Dataset Values">
+    <option>cpi</option><option selected="selected">house sales</option><option>gas price</option><option>gold price</option><option>usd to pound</option><option>usd to euro</option><option>unemployment</option><option>s and p 500</option><option>volatility</option></optgroup><optgroup label="Week-over-Week Percent Change"><option>cpi pdiff</option><option>house sales pdiff</option><option>gas price pdiff</option><option>gold price pdiff</option><option>usd to pound pdiff</option><option>usd to euro pdiff</option><option>unemployment pdiff</option><option>s and p 500 pdiff</option><option>volatility pdiff</option></optgroup>
+</select></form>
+    <form class="irisform" style="margin-top: 80px;">
+    <p>Second dataset:</p>
+    <select id="trait2" onchange="selectData()" class="selectpicker"><optgroup label="Dataset Values">
+    <option>cpi</option><option >house sales</option><option selected="selected">gas price</option><option>gold price</option><option>usd to pound</option><option>usd to euro</option><option>unemployment</option><option>s and p 500</option><option>volatility</option></optgroup><optgroup label="Week-over-Week Percent Change"><option>cpi pdiff</option><option>house sales pdiff</option><option>gas price pdiff</option><option>gold price pdiff</option><option>usd to pound pdiff</option><option>usd to euro pdiff</option><option>unemployment pdiff</option><option>s and p 500 pdiff</option><option>volatility pdiff</option></optgroup>
+</select></form>
+    <form class="irisform"  style="margin-top: 160px;">
+    <p>Third dataset:</p>
+    <select id="trait3" onchange="selectData()" class="selectpicker"><optgroup label="Dataset Values">
+    <option>cpi</option><option selected="selected">house sales</option><option>gas price</option><option selected="selected">gold price</option><option>usd to pound</option><option>usd to euro</option><option>unemployment</option><option>s and p 500</option><option>volatility</option></optgroup><optgroup label="Week-over-Week Percent Change"><option>cpi pdiff</option><option>house sales pdiff</option><option>gas price pdiff</option><option>gold price pdiff</option><option>usd to pound pdiff</option><option>usd to euro pdiff</option><option>unemployment pdiff</option><option>s and p 500 pdiff</option><option>volatility pdiff</option></optgroup>
+</select></form>
+    <form class="irisform"  style="margin-top: 240px;">
+    <p>Fourth dataset:</p>
+    <select id="trait4" onchange="selectData()" class="selectpicker"><optgroup label="Dataset Values">
+    <option>cpi</option><option selected="selected">house sales</option><option>gas price</option><option>gold price</option><option>usd to pound</option><option selected="selected">usd to euro</option><option>unemployment</option><option>s and p 500</option><option>volatility</option></optgroup><optgroup label="Week-over-Week Percent Change"><option>cpi pdiff</option><option>house sales pdiff</option><option>gas price pdiff</option><option>gold price pdiff</option><option>usd to pound pdiff</option><option>usd to euro pdiff</option><option>unemployment pdiff</option><option>s and p 500 pdiff</option><option>volatility pdiff</option></optgroup>
+</select></form>
+    </div>
         <div id="charts">
         </div>
     </section>
     
     
             
-    <section class="storyrow">
-    <h2>The Next Steps</h2>
+    <section class="storyrow" id="model">
+    <h2>The Model</h2>
     </section>
     
-    <section class="storyrow">
-    <h2>The Even Further Stpes</h2>
+    <section class="storyrow" id ="conclusions">
+    <h2>The Conclusions</h2>
     </section>
     
-    <section class="storyrow">
-    <h2>The Conclusion</h2>
-    </section>
-
 </div>
 
 <div class = "infopanel">
-    <p>
-    <h2>About</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.</p>
-    </p>
+    <p>To collect our data, we scraped over <strong>4000+ datasets </strong> and evaluated them all on the conditions of availability and predictive power!</p>
+</p>
 </div>
 
 
@@ -156,6 +141,10 @@ circle {
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
+<script type="text/javascript">
+	$('#introModal').modal();
+    console.log("premature load");
+    </script>
+    
 </body>
 </html>
