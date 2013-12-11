@@ -6,7 +6,6 @@ var trait1=document.getElementById("trait1");
 var trait2=document.getElementById("trait2");
 var trait3=document.getElementById("trait3");
 var trait4=document.getElementById("trait4");
-
 traits=[]
 traits[0]=trait1.options[trait1.selectedIndex].text;
 traits[1]=trait2.options[trait2.selectedIndex].text;
@@ -20,7 +19,6 @@ function getWidth(flowval){
 		var flow= Math.abs(flowval);
 		return (flow*10)-3;
 }
-
 var dataset ={'gold_price':'BUNDESBANK/BBK01_WT5511.1',
         'usd_to_pound':'QUANDL/USDGBP.1',
         'cpi':'FRED/CPIAUCSL.1',

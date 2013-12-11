@@ -20,6 +20,7 @@
   <!-- Import custom libraries -->
   <script src="js/pgfunc.js"></script>
   <script src="js/iris.js"></script>
+  <script src="js/sets.js"></script>
   
   <!-- Import fonts -->
 <link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:100,300,400,500,700' rel='stylesheet' type='text/css'>
@@ -40,6 +41,7 @@
             <li class="active"><a href="#introduction">Introduction</a></li>
             <li><a href="#data">Data</a></li>
             <li><a href="#model">Model</a></li>
+            <li><a href="#results">Results</a></li>
             <li><a href="#conclusions">Conclusions</a></li>
            </ul>
         </div>
@@ -102,12 +104,34 @@
     </div>
         <div id="charts">
         </div>
+        <p> Derp derp derp </p>
     </section>
     
-    
-            
-    <section class="storyrow" id="model">
+     <section class="storyrow" id="model">
     <center><h2>The Model</h2></center>
+   	<h3>Determining the Network</h3>
+    
+    <h3>Narrowing Down the Data</h3>
+    <center class="setbuttons"><div class="btn btn-primary" id="run_sets1">Step 1: Get Datasets List</div><div class="btn btn-primary" id="run_sets2">Step 2: Narrow Down the Data</div></center>
+    </section>
+    </div> <!-- end container -->
+    
+    <div class="usedsets_container">
+    <div class="rowaccent" id = "sets">
+    	<span class="notused">derp</span>
+    	<span class="notused">derp</span>
+    </div>
+    <div class="usedsets_info">
+        <h3>The Final Data</h3>
+        <p>Using the naive Bayesian classifier to find which of the 4000+ Quandl variables are available on a weekly basis for the last 10 years and have individual predictive power of the stock market, we find 12 variables: </p>
+        <p>To address the issue of collinearity, we elimate state-specific variabels and combine these variables which we beleive will provide some insight into the stock market, even if they do not in themselves provide predictive ability to teh stock market.  Our final input set of datasets is listed below.
+        </p>
+        </div>
+    </div>
+    
+    <div class="container" style="position:relative;top:-350px;">
+    <section class="storyrow" id="results">
+    <center><h2>Results</h2></center>
    	<h3>Determining the Network</h3>
     <p>To collect the data we use, we used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service with XYZ.
     1999 - Sept 7  Oct 9 2012
@@ -132,7 +156,7 @@
 </p>
 </div>
 
-<div class = "infopanel" style="margin-top:1100px">
+<div class = "infopanel" style="margin-top:1600px">
     <p>Fun fact fun fact <strong>emphasis </strong> and cool shit!</p>
 </p>
 </div>

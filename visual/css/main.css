@@ -122,9 +122,37 @@ position: absolute;
 		margin-bottom:60px;
 		width:900px;
 	}
+	#sets {
+	background-color:rgba(168, 221, 181, 0.17);
+	margin-top: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	height: 400px;
+	max-height: 400px;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	}
+	#sets span {
+		display: inline-block;
+margin-left: 1px;
+margin-right: 1px;
+font-size: 7px;
+}
+
+.usedsets_info{
+	position: relative;
+top: -375px;
+background-color: #FEFEFE;
+padding: 20px;
+opacity: 0;
+width: 600px;
+margin: 0px auto;
+border: 1px solid #EEE;
+height: 350px;
+}
+	
 	.halfrow {
 	display:inline-block;
 	width:50%;
 	float:left;}
-	
 	
