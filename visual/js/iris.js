@@ -3,7 +3,7 @@
 function initIris(inputtraits){
 d3.csv("data.csv", function(flowers) {
 	$("#charts").empty(); // Empty it out to start new.
-	console.log(flowers);
+	//console.log(flowers);
   // Size parameters.
   var size = 140,
       padding = 10,

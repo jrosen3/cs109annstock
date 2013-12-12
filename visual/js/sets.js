@@ -46,9 +46,9 @@ function RemoveSets(){
 		.ease("linear");
 	transition.each(function() {
 	  d3.selectAll("#sets .notused").transition()
-		  .style("opacity", 0)
-		  .style("height", 0)
-		  .style("width", 0)
+		  .style("opacity", .1)
+		  .style("height", 1)
+		  .style("width", 1)
 	
 	d3.selectAll("#sets .used").transition()
 		  .style("font-size", "12px")
@@ -58,7 +58,7 @@ function RemoveSets(){
 	.duration(1000)
 	.delay(3000)
 	.ease("linear")
-	.style("opacity", 1);
+	.style("opacity", .9);
 		  
 	});	
 }

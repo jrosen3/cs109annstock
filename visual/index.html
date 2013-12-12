@@ -42,6 +42,7 @@
             <li><a href="#data">Data</a></li>
             <li><a href="#model">Model</a></li>
             <li><a href="#results">Results</a></li>
+            <li><a href="#applications">Applications</a></li>
             <li><a href="#conclusions">Conclusions</a></li>
            </ul>
         </div>
@@ -52,7 +53,7 @@
     </div>
     <div class="resultpanel">
     <center><div class="btn btn-primary" id="run_nn">Run Neural Network </div></center>
-    <center id = "resultnote" style="display:none;" ><p style="color:#aaa;margin:0px;">* Edge widths are proportional to the actual weights trained after 300 epochs.  </p><p style="color:#aaa;margin:0px;">Blue edges represent positive weights, red represents negative weights.</p></center>
+    <center id = "resultnote" style="display:none;" ><p style="color:#aaa;margin:0px;">* Edge widths are proportional to the actual weights trained after 500 epochs.  </p><p style="color:#aaa;margin:0px;">Blue edges represent positive weights, red represents negative weights.</p></center>
     <h3>Results</h3>
     <p>Based on a Artificial Neural Network (ANN) trained using backprogogation and data from 1999 to 2012, the week-over-week stock market can be predicted to rise or fall with 60.6% accuracy. This prediction is more accurate for increases (68%) than for decreases (47%).</p>
      <h3>About</h3>
@@ -62,8 +63,8 @@
 	<section class ="rowaccent">
     <div class="accentcontainer">
     <center><h2>Background & Motivation</h2></center>
-    <p>Predicting the stock market is certainly a new endeavor.  However, past approaches have had shortcomings which we wanted to address, at least in part: past models depended on human intutition for the selection of input data (i.e. what should we put in the network?), and were also nontrivial to implement both in terms of computation power required and the data to be gathered. In this project, we aimed to take a more rigorous approach to data selection which incorporates not only human intuition, but an algorithmic examination of data relevance.  By doing so, we were able to find a set of input data that provides reasonable accuracy with relatively little total volume of data. While our work may not be at the scale or scope of larger commercial applications,it does resemble an original application of ANNs for financial data and an advancement in network pruning, a major topic among financial forecasting with ANNs in the scientific literature.</p>
-    <p>In terms of project motivation, we wanted to work on a project that was both novel and challenging: the computational and data-related aspects of neural networks are difficult and we were able to gain expereince on a practical programmatic level.  In addition, we wanted to focus on a project that was relevant and applicable: one of the major questions unaswered by our project is if the neural net we created could serve as a basis for a trading strategy.
+    <p>Predicting the stock market is certainly not an original new endeavor.  Past approaches have had their shortcomings: they depend on intutition for the selection of input data (i.e. what should we put in the network?), and are nontrivial to implement in terms of computational power and data gathering. In this project, we aimed to take on the challenge of using a neural network with fianncial data and take a more rigorous approach to data selection that incorporates an algorithmic examination of data relevance.   While our work may not be at the scale or scope of larger commercial applications, it does resemble an original application of ANNs for financial data and an advancement in network pruning, a topic of interest in related  scientific literature about financial forecasting with ANNs.</p>
+    <p>In terms of project motivation, we wanted to work on a project that was both novel and challenging: the computational and data-related aspects of neural networks are difficult and we were able to gain valuable experience on a practical programmatic level. Moreover, we wanted a project that was relevant and applicable: we only barely explored the practical trading applications of the predictions by our MLP neural net.
 </p>
     </div>
     </section>
@@ -72,29 +73,60 @@
     <div class="hiddenscroll" id="data"></div>
     <section class="storyrow">
     <center><h2 class="hideme">The Data</h2></center>
+    <section>
     <h3>Collecting the Data</h3>
-    <p class="viscontent">Before we decided on the specific data we were going to use, we first decided to download important financial metrics and begin exploring to determine how we would approach finding relevant financial data for our neural network. To collect data used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service which allowed us to explore and download relevant financial data.</p>
-    <p class="viscontent">In the end, we downloaded 683 weeks of data which ranged from Septemebr 1999 to October 2012, a range decided in our processing steps. Before this information was actuallyy used, we had to perform a number of steps to process the data.</p>
+    <p class="viscontent800">Before we decided on the specific data we were going to use, we first decided to download important financial metrics and begin exploring to determine how we would approach finding relevant financial data for our neural network. To collect data used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service which allowed us to explore and download relevant financial data.</p>
+    <p class="viscontent800">In the end, we downloaded 683 weeks of data which ranged from Sept. 1999 to Oct. 2012, a range by finding the chronological intersection of all our datasets). Before we were able to <i>use</i> the data, we had to perform a number of steps to process the data.</p>
+    <a href = "wwww.quandl.com" id="quandlimg"><img src ="images/quandl.png" /></a>
+    </section>
+    <section style="position:relative;top:-30px;">
     <h3>Processing Data</h3>
-    <p>Qunadl allowed us to access financial data easily; however, our work was just beginning.  The Data retrieved from Quandl was in s  We decided to use weekly data that extended at least to years back and had to write code to perform the following data procedures:</p>
-    <div class="viscontent" style="margin: 0px auto;background-color: #EEE;padding: 20px;">
+    <p class="viscontent">Quandl allowed us to download financial data easily; however, our work was just beginning.  The Data retrieved from Quandl was not ready for use (for example, the individual dataframes that were inconsistent with regards to time and range). We decided to use weekly data that extended at least ten years back and wrote code to perform the following data proceduress.  All function names are in <b>bold</b> and can be found in our <a href="process.html">processbook.</a></p>
+    <div class="twopanel viscontent">
         <div class="halfrow" style="border-right:1px solid #aaa;"><center><h4>Step 1: Cleaning & Combining</h4></center>
              <ul>
-                <li>
+                <li>Downloading the data: we use <b>get_quandl_data</b> to download the dataset.
                 </li>
+                <li>We use <b>collapser</b> to perform linear interperolation on all datasets on a daily level and adjust the time scales to be weekly. 
+                </li>
+                <li>We use <b>merger</b> to combine all the datsets into a single dataframe,and find the intersection dates of all datasets.</li>
             </ul>
             </div>
-        <div class="halfrow"><center><h4>Step 2: Interpoliating & Normalizing</h4></center>
+        <div class="halfrow"><center><h4>Step 2: Calcuation & Interpolation</h4></center>
             <ul>
-                <li>
+                <li>With the dataframe, we use <b>percentageDifference</b> to append columns which are the week-over-week percentage differences of our datasets.
                 </li>
+                <li>We use <b>biner</b> to create the outputs for the training dataframe which return a '0' or '1' based on the value of the percentage change in the s and p 500.
+                </li>
+                <li>Next, we use <b>advance_cols</b> to shift the output column by one date to create the 'correct' column by which we score our neural net.</li>
             </ul>
         </div>
     </div>
+   </section>
+    <h3 style="clear:both;">Exploring Data</h3>
+ <div style="text-align: center;
+padding: 10px;
+border: 1px solid #EEE;
+width: 520px;
+margin: 0px auto;">
+    <a href="images/fullscreen/p1.png" rel="prettyPhoto[pp_gal]" title="Summary metrics of our S&P data."><img src="images/thumbnails/t1.png" width="70" height="70" /></a>
+
+<a href="images/fullscreen/p2.png" rel="prettyPhoto[pp_gal]"  title="A histogram of S&P returns."><img src="images/thumbnails/t2.png" width="70" height="70" /></a>
+
+<a href="images/fullscreen/p3.png" rel="prettyPhoto[pp_gal]" title="A sample scatterplot of GDP vs S&P, one of many scatterplots."><img src="images/thumbnails/t3.png" width="70" height="70" /></a>
+
+<a href="images/fullscreen/p4.png" rel="prettyPhoto[pp_gal]" title="An analysis of collinearity in our data."><img src="images/thumbnails/t4.png" width="70" height="70" /></a>
+
+<a href="images/fullscreen/p5.png" rel="prettyPhoto[pp_gal]"  title="A color-coded display of S&P returns based on direction change (green is positive)."><img src="images/thumbnails/t5.png" width="70" height="70" /></a>
+<a href="images/fullscreen/p6.png" rel="prettyPhoto[pp_gal]"  title="A color-coded display of S&P returns based similar direction (green is where all three indicies move in the same direction)."><img src="images/thumbnails/t6.png" width="70" height="70" /></a>
+</div>
+    <p class="viscontent">With our cleaned data we began performing a wide variety of measures to describe and visualize our data.  In our <a href="process.html">processbook</a>, we used <b>scatter_plot</b> and <b>colin</b> to plot and find the collinearity of our datasets, in addition to calcualting over 10 metrics including average weekly change, extrema, standard deviation, etc.  A sample of our work is displayed in the interactive thumbnails above, with all our metrics and plots in the <a href="process.html">processbook</a>.  Later on, we also adapted a visual matrix plot with a selection of our exploratory data using d3.js, which is displayed below.
     
-    <h3 style="clear:both;">Visualizing Data</h3>
-    <p class="viscontent">With our data, we created a  series of visualization an <a href="process.html">processbook.</a> we downloaded 683 weeks of data which ranged from Septemebr 1999 to October 2012. Before this information was used in the neural network, we performed a series of visaulization steps to better understand the data we were working with.</p>
-    <h3>Exploring the Data - Weekly Economic Data from 1999-2012</h3>    
+    <h3>Visualizing the Data - Webpage</h3>
+    </p>The data was also visualized using for web interfaces (on this page). The neural network visualization was constructed from scratch using d3.js, and is one of the first web-based visualizations of neural networks to encode weights in edge color and width. Creating such this visualiziation was nontrivial and invovled navigation of large, sparse, three-dimensional arrays in javascript.  The matrix visualization was adapted from Mike Bostock's own code <a href="http://bl.ocks.org/mbostock/4063663">here.</a>  The visualizaton of Quandl codes was also constructed from scratch using d3.js.
+    
+    <h3 style="margin-top:40px;border-top:1px solid #ddd;padding-top:10px;">Visualizing the Data - Weekly Economic Data from 1999-2012</h3>   
+    <p class="viscontent">The following displays weekly data which is chromatically coded based on S&P percentage returns: positive(green) means a weekly return of more than 1%, neutral (grey) is between -1% and 1%, and negative points (blue) resemble weekly returns of less than negative 1%. By holding down the mouse over the visualization, you can 'select' points to be highlighted across the matrix.</p> 
     <div class="forms">
     <form class="irisform">
     <p>First dataset:</p>
@@ -119,55 +151,147 @@
     </div>
         <div id="charts">
         </div>
-        <p> Derp derp derp </p>
+        
     </section>
     
-     <section class="storyrow" id="model">
+    <div class="hiddenscroll" id="model"></div>
+     <section class="storyrow">
     <center><h2>The Model</h2></center>
-   	<h3>Determining the Network</h3>
-    
-    <h3>Narrowing Down the Data</h3>
+   	<h3>Narrowing Down the Data</h3>
+    <p>Eventually reached a point where we needed to decide what data include in our neural network.  Up to this point, we relied primarily on our own intuition, prior work, and common sense for what variables to include.  Because we were using Quandl, we tried a different tact: attempt to try every single dataset that Quandl has access to (total, 7000+!).  We applied a multinomial Naive Bayes classifier (see section on the Naive Bayesian model below) to the datasets to determine which of the 7000 datasets had predictive power, ending up with only 18 datasets left.   The following visualiation shows all the datasets we tested, and the datasets that we narrowed it down until.  All Quandl dataset codes are linked and interacitve. (click them!)</p>
     <center class="setbuttons"><div class="btn btn-primary" id="run_sets1">Step 1: Get Datasets List</div><div class="btn btn-primary" id="run_sets2" style="margin-left:50px;">Step 2: Narrow Down the Data</div></center>
     </section>
     </div> <!-- end container -->
     
     <div class="usedsets_container">
     <div class="rowaccent" id = "sets">
-    	<span class="notused">derp</span>
-    	<span class="notused">derp</span>
+    	<center style="margin-top:30px;"><h3>Press the 'Get Datasets List' button to begin.</h3></center>
     </div>
     <div class="usedsets_info">
         <h3>The Final Data</h3>
-        <p>Using the naive Bayesian classifier to find which of the 4000+ Quandl variables are available on a weekly basis for the last 10 years and have individual predictive power of the stock market, we find 12 variables: </p>
-        <p>To address the issue of collinearity, we elimate state-specific variabels and combine these variables which we beleive will provide some insight into the stock market, even if they do not in themselves provide predictive ability to teh stock market.  Our final input set of datasets is listed below.
-        </p>
+        <p>Using the naive Bayesian classifier to find which of the 7000+ Quandl variables are available and have individual predictive power of the stock market, we found 18 variables. </p>
+        <p>To address the issue of collinearity, we elimate state-specific variabels and combine these variables which we beleive will provide some insight into the stock market, even if they do not in themselves provide predictive ability to the stock market.  Our final input set of datasets can be seen as the labels in the input neurons in our neural network visualization from above.
+        </div>
+    </div>    
+    <div class="container" style="position:relative;top:-350px;">
+     <h3>The Bayesian Classifier</h3>
+    <p class = "viscontent">A mentioned earleir, we took a naive Bayesian approach to evaluating which data should be included in our neural network.  In doing so, we also created a predictive neural network model based on the 7000+ datsets on Quandl which performed remarkably well.  Our naive Bayesian appraoch was split into three distinct stages: </p><ul><li>Stage 1: Using <b>NB_Add_Drop</b>, we iterated through the lists of datasets in arbitrary order and kept variables that improved the accuracy of the model (which accumulated all previous variables that had been tested).</li><li>Stage 2: Using <b>NB_All_Vars</b>, we tested the variables with model of the S&P and the particular dataset, which adressed the problem of first-mover bias.  In stage 1 the first few variables that the model tries will get included, while later variabels affect the model less (and are thus less likely to be included). This stage is more fair way to test each variable, giving each one a chance to succeed. <strong>It is with the result of this stage we construct a input dataset for our neural network.</strong></li>
+    <li>Stage 3: Using <b>NB_Add_Drop_Top</b>, we apply the methodology of stage 1 only on the result of stage 2, creating a predicitve model using a Naive Bayesian approach for the stock market.  More specifially, among variables which are found to be individually predictive, we add these variables together to one variable unless it does not improve the model.  <b>This stage constructs a predictive Bayesian classifier model.</b>
+    </li></ul>    
+    
+   	<h3>Training and Testing the Neural Network</h3>
+    <p class = "viscontent">After all our data sets, we trained our neural network thorugh the use of <a href="http://en.wikipedia.org/wiki/Backpropagation">backprogatation</a>, which is useful for feedforward networks like the MLP neural net we are using.  Because this is a supervised learning method, we have to specify our specific input set, which we do with data from 1999-2011 (and we reserve 2012 for testing).  The backpropagation training took anywhere from 5 minutes to up to 45 minutes (with an upper limit of inifinity).  Of the many parameters we could have experimented with, we note the following:</p>
+    <ul>
+    <li><b>Hidden layers:</b> We decided to choose to only have <b>one</b> hidden layer because of computational simplicity (both in terms of algorithm implementation and computation time).  In addition, existing literature (see <a href="http://www.eecs.harvard.edu/~parkes/cs286r/spring08/cours.pdf">this presentation</a>) suggests that more than one hidden layer is unecessary.</li>
+    <li><b>Hidden neurons:</b> without enough hidden neruons, our model would predict increases too many times (and overlook decreases).  This was solved by incorporating more hidden neurons, but we hit an upper bound with regards to reasonable computational time. Thus, we settled for 14 input neurons.</li>
+    <li><b># Input neurons:</b> this was decided by the dataset we came up with, which totaled 20 datasets / input neurosn. </li>
+    <li><b># Output neurons:</b> existing literature (again,<a href="http://www.eecs.harvard.edu/~parkes/cs286r/spring08/cours.pdf">this presentation</a>), suggests that having only one output is optimal.  Thus, we chose to have one output neuron (range -1 to 1).
+    <li><b>Learning rate / epochs:</b> the number of training epochs to run (and corresponding learning rate) was largely determined by trial and error.  In addition, we constructed errors plots for intuition (see below).  By doing so, approximate an 'optimal' learning rate and epoch time at 500 epochs at a learning rate of .0001.</li>
+    </ul> 
+        <p>The following is the mean-squared error (MSE) of the training and testing sets by epoch (iteration) of training the backpropagation algorithm.  As you can see, error decreases as the network is trained for both datasets until a certain point.</p>
+    <div class="errorimg">
+    	<img src="images/error.png"/>
+    </div>
+    
+    <div class="hiddenscroll" id="results"></div>
+    <section class="storyrow">
+    <center><h2>Results</h2></center>
+   	<p>The following is an overview of the results for both networks are shown below, with more detailed results in our <a href="process.html">processbook</a>. </p>
+    
+    <h3>Prediction Probabilities and Errors</h3>
+    <center>
+    <div class="rowcontainer">
+        <div class="halfrow" style="border-right:1px solid #eee">
+        	<center><h3>The Neural Network</h3></center>
+            <p class="note">*This result varies per trial on random weight intializiation for the neural network.</p>
+            <div class="infobox">
+                <h4>Prediction accuracy <b>overall:</b></h4>
+                <h1>63.64%</h1>
+            </div>
+            <div class="infobox">
+                <h4>Accuracy for <b>increases</b>:</h4>
+                <h1>79.37%</h1>
+            </div>
+           <div class="infobox">
+                <h4>Accuracy for <b>decreases</b>:</h4>
+                <h1>36.11%</h1>
+            </div>
+        </div>
+        <div class="halfrow">
+            <center><h3>The Bayesian Classifier</h3></center>
+            <p class="note">*This result is consistent acrolls trials and remains constant.</p>
+            <div class="infobox">
+                <h4>Prediction accuracy <b>overall:</b></h4>
+                <h1>61.62%</h1>
+            </div>
+            <div class="infobox">
+                <h4>Accuracy for <b>increases</b>:</h4>
+                <h1>79.69%</h1>
+            </div>
+           <div class="infobox">
+                <h4>Accuracy for <b>decreases</b>:</h4>
+                <h1>28.57%</h1>
+            </div>
         </div>
     </div>
-    
-    <div class="container" style="position:relative;top:-350px;">
-    <section class="storyrow" id="results">
-    <center><h2>Results</h2></center>
-   	<h3>Determining the Network</h3>
-    <p>To collect the data we use, we used the services of <a href="http://www.quandl.com/">Quandl</a>, an API service with XYZ.
-    1999 - Sept 7  Oct 9 2012
-    <p class = "viscontent">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a gravida nulla. Suspendisse sollicitudin enim porttitor ante dapibus, id interdum neque tempus. Pellentesque cursus suscipit porttitor. Vivamus ut nibh id enim varius accumsan. Ut a leo quis lacus faucibus tincidunt sed quis justo. Mauris ornare tellus arcu, quis interdum diam ullamcorper a. Vestibulum malesuada nisi sit amet dapibus vulputate. Maecenas venenatis erat pretium purus egestas bibendum.</p>
-    <h3>Determining the Network</h3>
-    <div class="halfrow" style="border-right:1px solid #ccc">
-    <center><h3>The Neural Network</h3></center>
+    </center>
+    <div class="halfrow">
+    <h3 style="clear:both;">Neural Network Results</h3>
+    <p>The Neural Network results were somewhat dependent on the network intiailization (weights are randomly generated, at first, but generally were suprisingly positive. The network performed well most of the time, and performs worse for decreases than for increases.</p>    <div class="errorimg">
+    	<img src="images/results.png"/>
+    </div>
     </div>
     <div class="halfrow">
-    <center><h3>The Bayesian Classifier</h3></center>
+    <h3 style="clear:both;">Bayesian Classifier Results</h3>
+    <p>The Bayesian Classifier performed suprisingly well as well, outperforming at a level mostly similar to the neural network (though underperforming for perdicting decreases.  The Bayesian Classifier model also performs significantly better for predicting increases than decreases. </p>
+       <div class="errorimg">
+    	<img src="images/results2.jpg"/>
     </div>
+    </div>
+    <p style="clear:both">The above figures show movement in the S&P and accompanying predictions: green rectangles represent accurate predictions, red rectabgles represent inaccurate predictions, and the black figures are the percent changes in the S&P. </p>
+
+    
     </section>
     
-    <section class="storyrow" id ="conclusions">
-    <center><h2>The Conclusions</h2></center>
+    <div class="hiddenscroll" id="applications"></div>
+    <section class="storyrow">
+    <center><h2>Applications</h2></center>
+    <p>Given the results of the model, we also wanted to experiment with the practical applications of the model. To do so, we formulated a simplistic trading strategy based on our weekly predictions:</p>
+    <center>
+    <div class="infobox" style="width:700px;"><h3>How We Traded</h3><p style="text-align:left;">If we predict an increase, than we spend all of our money  buying (or keep our money) in the S&P 500 index.  If we predict a decrease, we take all our money out as cash and hold it until we predict an icnrease.  This happens every week, with us running the model on Sunday, placing the buy/sell order on Mondays.</p></div>
+    </center>
+    <h3 style="margin-top:20px;">Trading Strategy Results</h3>
+    <p>We ran the trading strategy over 98 weeks (spprox two years) starting in 2010. Our model resulted in a trading strategy that created a return of <b>25.09%</b> while the S&P index increased <b>22.69%</b> over the same period.</p>
+    <p>The first graph shows the percent return of a hypothetical portfiolio using our strategy and one which does not.  The second graph shows the relative percentage difference with the index over time. <b>Our model preformed 2.39% better than the market.</b></p>
+        <div class="resultimgs">
+        <center>
+        <img src="images/trading1.png" style="margin-left:100px;" />
+        <img src="images/trading2.png"/>
+        </center>
+        </div>
+    </section>
+    
+    <div class="hiddenscroll" id="conclusions"></div>
+    
+    <section class="storyrow" style="border-top:none;position: relative;top:60px;">
+    <center><h2 style="clear:both;">The Conclusion</h2></center>
+    <p>
+    We were sucessful in exploring the use of Artifiical Neural Networks for predicting and analyzing financial time series data. By taking a 'shotgun' programmatic approach to data selection, were able to not only accomplish analysis through origianl ends but also find a set of input data that provides reasonable accuracy with relatively little total volume.  Both models were tested across paramaters and were sucessful in providing insight into stock market direction over the weekly time scale. Moreover, we were able to construct novel and techncially nontrivial visualiations of a neural network weights using d3.  Finally, we were able to create a simplistic yet still effective trading strategy based on our neural network which outperformed the S&P index.
+    </p>
     </section>
     
 </div>
 
-<div class = "infopanel">
-    <p>By the end of the project, we scraped over <strong>4000+ datasets </strong> and evaluated them all on the conditions of availability and predictive power. (More on this below!)</p>
+<div class="footer">
+<div id="footerbody">
+			<span>Data Source: Quandl (various, incl. U.S. Federal Reserve, see links)</span><br>
+			<span>Powered by <a href= "http://jquery.com/">jQuery</a>, <a href ="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/">PrettyPhoto</a>, <a href = "http://d3js.org/">d3.js</a></span><br>
+			<span>Matrix brushing visualization adapted from <a href="http://bl.ocks.org/mbostock/4063663">here.</a> </span>
+		</div>
+        
+</div>
+<div class = "infopanel" style="top:1440px;">
+    <p>By the end of the project, we scraped over <strong>7000+ datasets!</strong></p>
 </p>
 </div>
 
@@ -176,6 +300,15 @@
 </p>
 </div>
 
+<div class = "infopanel" style="margin-top:1100px">
+    <p>You can make more than 3000 distinct matricies with this visualization!</p>
+</p>
+</div>
+
+<div class = "infopanel" style="margin-top:1100px">
+    <p>The neural network visualization above is the first of its kind online to use actual weights in encoding edge width and color!</p>
+</p>
+</div>
 
 <!-- Introductory Modal -->
 <div class="modal fade" id = "introModal">

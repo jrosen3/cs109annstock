@@ -48,6 +48,14 @@ background-color: #EEE;}
 .container {
 	width: 1170px!important;
 }
+
+#quandlimg{
+	position: relative;
+top: -100px;
+left: 810px;
+}
+#quandlimg img {
+width:200px;}
 .rowaccent {
 width: 100%;
 margin-top: 30px;
@@ -69,9 +77,9 @@ background-color: #2F375F;
 	
 	.infopanel{
 		position: absolute;
-		top: 1080px;
+		top: 1220px;
 		float: right;
-		right: 20px;height: 150px;
+		right: 40px;
 		width: 250px;
 		background-color: #F5FFEF;
 		border: 1px solid #DDD;
@@ -96,6 +104,13 @@ background-color: #2F375F;
 		border-top: 1px solid #EEE;
 	}
 	
+	.twopanel {
+		margin: 0px auto;
+		background-color: #FAFAFA;
+		border: 1px solid #EEE;
+		padding: 20px;
+		height: 260px;
+	}
 	.btn-primary{
 		background-color: #4F7799;
 border-color: #2B5070;
@@ -119,8 +134,10 @@ position: absolute;
 		margin-left:100px;
 	}
 	.viscontent {
-		margin-bottom:60px;
 		width:900px;
+	}
+		.viscontent800{
+		width:800px;
 	}
 	#sets {
 	background-color:rgba(168, 221, 181, 0.17);
@@ -151,9 +168,42 @@ border: 1px solid #EEE;
 height: 350px;
 pointer-events:none;
 }
-	
+.errorimg img {width: 500px;
+margin: 0px auto;}
+.errorimg {text-align:center;}
+	.rowcontainer {width:700px;height:500px;}
 	.halfrow {
 	display:inline-block;
 	width:50%;
 	float:left;}
+	
+	.infobox {
+		margin: 0px auto;
+width: 250px;
+background-color: #F3F3F3;
+padding: 10px;
+border: 1px solid#CCC;
+text-align: center;
+margin-bottom:10px;}
+	.note {
+	text-align: center;
+color: #BBB;
+}
+	.footer {
+		text-align: center;
+padding-top: 18px;
+padding-bottom: 10px;
+border-top: 1px solid #000;
+background-color: #483A66;
+color: #EEE;
+	}
+	
+	.resultimgs img {
+		width:450px;
+		height:340px;
+		float:left;
+		border:1px solid #ccc;
+		margin-left:10px;
+		padding:2px;
+	}
 	

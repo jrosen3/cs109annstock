@@ -87,7 +87,7 @@ $(function() {
 	var inputdata = Object.keys(dataset);//["derp",12,6,8,15,18,19,32,54,87,45,50,23,55,34];
 	var hiddendata = [10,12,6,8,67,3,6,34,3,43,34,3,43];
  	var outputdata = [10];
-	
+	console.log(inputdata);
     svg = d3.select("#mainvis").append('svg');
 	
 	var xmargin=100;
