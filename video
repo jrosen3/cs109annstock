@@ -1,0 +1,9 @@
+Jake: NB
+Kevin: Neural Network
+Jared: Results
+
+Jake: For our project, we thought we'd use data to get rich quick by predicting the stock market. We wanted to use a more advanced analysis tool, called a neural network, where the computer figures out the weights for each variable itself. 
+
+But first we wanted to figure which variables to use. Because we had access to an online repository of financial data called Quandl, we could run statistics on over 7000 variables. But a neural network takes a really long time to run, so we used a Naive Bayes to find out which variables had predictive power, then settled on a final list of inputs for the neural network. 
+
+Kevin: The advantage of a neural network against a Naive Bayes is that it will properly weight each variable. We spent a considerable of time finetuning the tempermental network, adjusting the learning rate and number of iterations to get the best results. 
